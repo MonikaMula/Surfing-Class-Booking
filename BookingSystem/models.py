@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class SurfingClass(model.Model):
+class SurfingClass(models.Model):
     class_name = models.CharField(max_length=100)
     instructor = models.CharField(max_length=100)
     date = models.DateField()
