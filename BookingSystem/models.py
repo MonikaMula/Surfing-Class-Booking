@@ -23,5 +23,5 @@ class SurfingClass(models.Model):
 class Booking(models.Model):
     surfing_class = models.ForeignKey(SurfingClass, on_delete=models.CASCADE)
     participant_name = models.CharField(max_length=100)
-    contact_email = models.EmailField
+    contact_email = models.EmailField()
     contact_number = models.CharField(max_length=20)
