@@ -20,8 +20,18 @@ class SurfingClass(models.Model):
     def available_spots(self):
         return self.max_capacity - self.current_capacity
     
+    def __str__(self):
+        return self.class_name
+    class Meta:
+        ordering = ["date", "start_time"]
+    
 class Booking(models.Model):
     surfing_class = models.ForeignKey(SurfingClass, on_delete=models.CASCADE)
     participant_name = models.CharField(max_length=100)
     contact_email = models.EmailField()
     contact_number = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return f"Booking for {self.surfing_class} by {self.participant_name}"
+    class Meta:
+        ordering = ["surfing_class", "participant_name"]
