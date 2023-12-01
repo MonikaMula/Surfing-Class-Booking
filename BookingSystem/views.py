@@ -6,7 +6,7 @@ def home(request):
     return render(request, 'bookingsystem/dashboard.html')
 
 def classes(request):
-    return HttpResponse('classes')
+    return render(request, 'bookingsystem/classes.html')
 
 def customer(request):
-    return HttpResponse('customer')
+    return render(request, 'bookingsystem/customer.html')
