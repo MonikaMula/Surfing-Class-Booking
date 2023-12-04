@@ -6,4 +6,5 @@ from .models import *
 
 admin.site.register(Customer)
 admin.site.register(Classes)
+admin.site.register(Tag)
 admin.site.register(Booking)

@@ -11,6 +11,12 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    
+    def __str__(self):
+        return self.name
+
 class Classes(models.Model):
     DESCRIPTION = (('Mix', 'Mix'), ('Female', 'Female'), ('Male', 'Male'))
     CATEGORY = (('Beginner','Beginner'), ('Advance/Practicing', 'Advance/Practicing'))
@@ -20,15 +26,24 @@ class Classes(models.Model):
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     description = models.CharField(max_length=200, null=True, choices=DESCRIPTION)
     date_created = models.DateField(auto_now_add=True, null=True)
-
+    tags = models.ManyToManyField(Tag)
+    
+    # def __str__(self):
+        # return self.name
 
 class Booking(models.Model):
-    STATUS = (('PENDING BOOKING', 'PENDING BOOKING'), ('Waiting for approval', 'Waiting for approval'), ('Approved', 'Approved'), ('Cancelled', 'Cancelled'))
+    STATUS = (('PENDING BOOKING', 'PENDING BOOKING'), 
+              ('Waiting for approval', 'Waiting for approval'), 
+              ('Approved', 'Approved'), ('Cancelled', 'Cancelled')
+              )
     
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    classes = models.ForeignKey(Classes, null=True, on_delete=models.SET_NULL)
     booking_date = models.CharField(max_length=200, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     
-    
+    # def __str__(self):
+        # return self.name
     
 # class SurfingClass(models.Model):
     # class_name = models.CharField(max_length=100)
